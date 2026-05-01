@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de Privacidad - RADAR-SD</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #e0e0e0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            padding: 30px;
+            line-height: 1.8;
+            font-size: 14px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #00ffff;
+            font-size: 22px;
+            text-transform: uppercase;
+            border-bottom: 2px solid #00ffff;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            letter-spacing: 3px;
+            text-align: center;
+        }
+        h2 {
+            color: #00ffff;
+            font-size: 16px;
+            text-transform: uppercase;
+            margin-top: 40px;
+            border-left: 4px solid #ff00ff;
+            padding-left: 15px;
+        }
+        h3 {
+            color: #ff00ff;
+            font-size: 13px;
+            text-transform: uppercase;
+            margin-top: 25px;
+        }
+        p, li {
+            color: #b0b0b0;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        .highlight {
+            color: #ff00ff;
+            font-weight: bold;
+        }
+        .vanguard-box {
+            background-color: #0a0a0a;
+            border: 1px solid #333;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .important-notice {
+            border: 1px solid #ff00ff;
+            padding: 15px;
+            color: #ffffff;
+            font-weight: bold;
+            background: rgba(255, 0, 255, 0.05);
+        }
+        .footer {
+            margin-top: 60px;
+            font-size: 11px;
+            color: #444;
+            text-align: center;
+            border-top: 1px solid #222;
+            padding-top: 30px;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Política de Privacidad y Manejo de Datos</h1>
+        
+        <div class="important-notice">
+            AL UTILIZAR RADAR-SD (SISTEMA VANGUARD), USTED ACEPTA EXPRESAMENTE EL PROCESAMIENTO DE SUS DATOS DE UBICACIÓN Y EL USO DE SENSORES DE HARDWARE BAJO LOS TÉRMINOS DESCRITOS EN ESTE DOCUMENTO.
+        </div>
+
+        <p>Radar-SD no es una aplicación convencional basada en la nube. Es una red de vigilancia urbana <span class="highlight">descentralizada y P2P (Peer-to-Peer)</span>. Esta arquitectura redefine la privacidad, eliminando la necesidad de servidores centrales y otorgando al usuario el control absoluto de su información.</p>
+
+        <h2>1. Identidad Criptográfica y Anonimato</h2>
+        <p>A diferencia de otras plataformas, Radar-SD no solicita nombres, correos electrónicos, números de teléfono ni perfiles de redes sociales. Tu identidad en la red es puramente <span class="highlight">criptográfica</span>.</p>
+        <ul>
+            <li><strong>Generación de Llaves:</strong> Al iniciar, el sistema genera un par de llaves asimétricas (ECDSA) utilizando el hardware seguro de tu dispositivo (Android KeyStore / StrongBox).</li>
+            <li><strong>Identificador de Nodo (NODO_ID):</strong> Tu identidad pública es un hash irreversible de tu llave pública. Este ID permite que otros nodos verifiquen la autenticidad de tus reportes sin conocer tu identidad real.</li>
+            <li><strong>Firma Digital:</strong> Cada acción que realizas (reportar o validar) es firmada digitalmente. Solo tú, a través de tu llave privada protegida por hardware, puedes autorizar estas transmisiones.</li>
+        </ul>
+
+        <h2>2. Uso y Tratamiento de la Ubicación</h2>
+        <p>La ubicación es la columna vertebral de Radar-SD. Sin ella, la red mesh no puede operar. Procesamos la ubicación de dos formas:</p>
+        <h3>A. Posicionamiento en el Mapa (GPS)</h3>
+        <p>Utilizamos el GPS para fijar con precisión milimétrica la ubicación de las anomalías urbanas (baches, fallas eléctricas, etc.). Estos datos se guardan en tu base de datos local y se comparten con otros nodos solo cuando tú decides "Transmitir".</p>
+        <h3>B. Descubrimiento de Proximidad (Nearby)</h3>
+        <p>Para versiones de Android anteriores a la 12, se requiere el permiso de ubicación para permitir que el protocolo <span class="highlight">Google Nearby Connections</span> identifique otros teléfonos cercanos y construya la red mesh de sincronización.</p>
+
+        <h2>3. Uso de la Cámara y Multimedia</h2>
+        <p>El acceso a la cámara se solicita exclusivamente para la captura de evidencia técnica. Radar-SD utiliza un motor de <span class="highlight">IA Local (TensorFlow Lite)</span> para analizar la imagen en tiempo real y asignar un nivel de confianza al reporte. Las imágenes se almacenan en el directorio privado de la aplicación y se transfieren a otros nodos durante la sincronización táctica.</p>
+
+        <h2>4. Almacenamiento y Derechos del Usuario</h2>
+        <p>Toda la información que recibes de otros ciudadanos se almacena en una base de datos <span class="highlight">SQLite (Room)</span> en tu dispositivo. Radar-SD no posee una "nube" donde se guarden estos datos.</p>
+        <ul>
+            <li><strong>Derecho al Olvido:</strong> Puedes eliminar cualquier reporte que hayas creado desde la pantalla de detalles. Esto enviará una señal de purga a la red mesh para informar que el dato debe ser eliminado.</li>
+            <li><strong>Limpieza de Caché:</strong> En la sección de ajustes, puedes eliminar la caché de mapas (OpenStreetMap) para liberar espacio de almacenamiento.</li>
+            <li><strong>Eliminación Total:</strong> Al desinstalar la aplicación o limpiar los datos desde los ajustes del sistema Android, toda tu base de datos y tu identidad criptográfica se borrarán permanentemente. No existe forma de recuperar una identidad borrada.</li>
+        </ul>
+
+        <h2>5. Seguridad en la Transmisión (P2P)</h2>
+        <p>Aunque no hay un servidor central, los datos están protegidos durante el tránsito:</p>
+        <div class="vanguard-box">
+            <strong>Protocolo Vanguard:</strong> Los datos se transfieren mediante túneles cifrados de Google Nearby. Además, cada reporte incluye una firma ECDSA y una prueba de trabajo (Proof of Work) para prevenir ataques de spam y asegurar la integridad de la información recibida de otros nodos.
+        </div>
+
+        <h2>6. Servicios de Terceros</h2>
+        <p>Para ofrecer una experiencia operativa completa, integramos:</p>
+        <ul>
+            <li><strong>Google Play Services:</strong> Utilizado para la infraestructura de red Nearby Connections.</li>
+            <li><strong>OpenStreetMap (OSM):</strong> Proveedor de la cartografía táctica. Las peticiones de mapas pueden exponer tu dirección IP al servidor de tiles de OSM, pero no tu identidad de Radar-SD.</li>
+        </ul>
+
+        <h2>7. Actualizaciones</h2>
+        <p>Esta política puede actualizarse para reflejar mejoras en los protocolos de red. Se recomienda revisar el "Centro de Utilidades" periódicamente.</p>
+
+        <div class="footer">
+            PROTOCOL: RADAR_SD_VANGUARD_CORE<br>
+            VERSION: 2.0.0 (STABLE)<br>
+            SECURITY_LEVEL: HIGH (AES-256 + ECDSA)
+        </div>
+    </div>
+</body>
+</html>
